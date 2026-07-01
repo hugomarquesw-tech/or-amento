@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial – Unique Consultoria</title>
+<style>
+:root{
+  --azul:#1A3557;--azulm:#2563A8;--azulc:#EBF2FB;
+  --verde:#166534;--verdec:#DCFCE7;
+  --verm:#991B1B;--vermc:#FEF2F2;
+  --amar:#92400E;--amarc:#FEF3C7;
+  --cinza:#6B7280;--cinzac:#F3F4F6;
+  --borda:#D1D5DB;--txt:#111827;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#E8EDF4;color:var(--txt);font-size:15px;}
+
+.hdr{background:var(--azul);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+.hdr .ico{font-size:26px;}
+.hdr h1{font-size:1.05rem;font-weight:700;line-height:1.3;}
+.hdr p{font-size:0.72rem;opacity:.7;margin-top:2px;}
+
+.wrap{max-width:860px;margin:0 auto;padding:16px 12px 80px;}
+
+.card{background:#fff;border-radius:10px;border:1px solid var(--borda);margin-bottom:16px;overflow:hidden;}
+.chdr{color:#fff;padding:10px 14px;font-weight:700;font-size:0.83rem;display:flex;align-items:center;gap:7px;}
+.chdr.azul{background:var(--azul);}
+.chdr.verde{background:#166534;}
+.chdr.amar{background:#78350F;}
+.cbdy{padding:14px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;}
+@media(max-width:540px){.g2,.g3{grid-template-columns:1fr;}}
+.sp{grid-column:1/-1;}
+.fg{display:flex;flex-direction:column;gap:4px;}
+.lbl{font-size:0.68rem;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:.4px;}
+input[type=text],input[type=date],input[type=number],select,textarea{
+  border:1.5px solid var(--borda);border-radius:6px;padding:8px 10px;
+  font-size:0.88rem;font-family:inherit;color:var(--txt);width:100%;background:#fff;
+  -webkit-appearance:none;appearance:none;
+}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--azulm);box-shadow:0 0 0 3px rgba(37,99,168,.1);}
+textarea{resize:vertical;min-height:60px;}
+
+/* RESP BOX */
+.resp-box{background:var(--azulc);border:1px solid #BFDBFE;border-radius:8px;padding:11px 12px;grid-column:1/-1;}
+.resp-box .lbl{color:var(--azulm);}
+.resp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
+
+/* LOGO */
+.logos-upload{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.logo-slot{border:2px dashed var(--borda);border-radius:10px;padding:12px;text-align:center;cursor:pointer;background:var(--cinzac);}
+.logo-slot.ok{border-style:solid;border-color:var(--azulm);background:#fff;}
+.logo-slot img{max-height:55px;max-width:100%;margin-bottom:5px;display:block;margin-left:auto;margin-right:auto;}
+.logo-slot span{font-size:0.75rem;color:var(--cinza);font-weight:600;display:block;}
+.logo-slot small{font-size:0.68rem;color:var(--cinza);}
+.logo-rm{margin-top:5px;font-size:0.72rem;color:var(--verm);cursor:pointer;font-weight:600;}
+
+/* SERVIÇOS */
+.srv-grupo{margin-bottom:18px;}
+.srv-grupo-titulo{font-size:0.75rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--azulm);border-bottom:2px solid var(--azulc);
+  padding-bottom:5px;margin-bottom:8px;}
+
+.srv-item{display:grid;grid-template-columns:auto 1fr 100px 130px 110px;
+  gap:8px;align-items:center;padding:8px 10px;border-radius:7px;
+  border:1.5px solid var(--borda);margin-bottom:6px;background:#FAFAFA;
+  transition:background .15s,border-color .15s;}
+.srv-item.ativo{background:var(--azulc);border-color:var(--azulm);}
+@media(max-width:600px){
+  .srv-item{grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;}
+  .srv-item .srv-qtd,.srv-item .srv-val,.srv-item .srv-total{grid-column:2;}
+}
+
+.srv-check{width:18px;height:18px;cursor:pointer;accent-color:var(--azulm);flex-shrink:0;}
+.srv-nome{font-size:0.85rem;font-weight:500;cursor:pointer;line-height:1.3;}
+.srv-item.ativo .srv-nome{font-weight:700;color:var(--azul);}
+
+.srv-qtd,.srv-val{border:1.5px solid var(--borda);border-radius:5px;
+  padding:5px 7px;font-size:0.82rem;font-family:inherit;
+  background:#fff;width:100%;text-align:right;}
+.srv-qtd:disabled,.srv-val:disabled{background:var(--cinzac);color:#9CA3AF;cursor:not-allowed;}
+.srv-total{font-size:0.85rem;font-weight:700;color:var(--azulm);text-align:right;padding:0 4px;}
+.srv-total.zero{color:#9CA3AF;font-weight:400;}
+
+.srv-header{display:grid;grid-template-columns:auto 1fr 100px 130px 110px;
+  gap:8px;padding:5px 10px;margin-bottom:4px;}
+.srv-header span{font-size:0.65rem;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:.4px;}
+.srv-header span:last-child{text-align:right;}
+.srv-header span:nth-child(3),.srv-header span:nth-child(4){text-align:right;}
+@media(max-width:600px){.srv-header{display:none;}}
+
+/* RESUMO */
+.resumo-box{background:var(--azul);border-radius:10px;padding:16px;color:#fff;margin-bottom:16px;}
+.resumo-box h3{font-size:0.85rem;opacity:.8;margin-bottom:12px;text-transform:uppercase;letter-spacing:.4px;}
+.resumo-linha{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.1);}
+.resumo-linha:last-child{border-bottom:none;padding-top:10px;margin-top:4px;}
+.resumo-linha span{font-size:0.88rem;}
+.resumo-linha strong{font-size:1rem;}
+.resumo-total{font-size:1.2rem;font-weight:700;}
+.resumo-desc{color:rgba(255,255,255,.7);font-size:0.8rem;}
+
+/* BOTÕES */
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{border:none;border-radius:8px;padding:13px 18px;font-size:0.92rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;gap:7px;flex:1;
+  justify-content:center;transition:opacity .15s;-webkit-tap-highlight-color:transparent;}
+.btn:active{opacity:.8;}
+.btnp{background:var(--azul);color:#fff;}
+.btns{background:#fff;color:var(--azul);border:2px solid var(--azul);}
+
+#preview-box{display:none;background:#fff;border-radius:10px;border:1px solid var(--borda);padding:16px;margin-bottom:16px;}
+#preview-box h2{color:var(--verde);margin-bottom:6px;font-size:0.95rem;}
+#preview-box p{font-size:0.8rem;color:var(--cinza);margin-bottom:12px;line-height:1.5;}
+
+/* ======= PRINT ======= */
+@media print{
+  body{background:#fff!important;}
+  .hdr,.wrap,.aviso,#btn-area,#preview-box{display:none!important;}
+  #parea{display:block!important;}
+  @page{margin:10mm 14mm 12mm 14mm;}
+  #parea table.phdr-tbl thead{display:table-header-group;}
+  #parea table.phdr-tbl tbody{display:table-row-group;}
+}
+#parea{display:none;font-family:Arial,sans-serif;font-size:9pt;color:#111;}
+
+/* PRINT STYLES */
+.pghdr{background:#1A3557;width:100%;margin-bottom:0;}
+.pghdr-inner{display:flex;align-items:center;gap:10px;padding:8px 14px;}
+.pghdr .plogo{width:60px;height:60px;object-fit:contain;border-radius:5px;background:#fff;flex-shrink:0;padding:2px;}
+.pghdr-txt{flex:1;text-align:center;}
+.pghdr-txt h1{color:#fff;font-size:11pt;font-weight:bold;margin-bottom:3px;}
+.pghdr-txt .linha1{color:rgba(255,255,255,.92);font-size:7pt;margin-bottom:1px;}
+.pghdr-txt .linha2{color:rgba(255,255,255,.85);font-size:7pt;}
+.pghdr-faixa{background:#2563A8;padding:2px 14px;color:#fff;font-size:6.5pt;font-weight:bold;text-align:right;}
+
+.p-capa{text-align:center;padding:40px 20px;}
+.p-capa h2{font-size:16pt;font-weight:bold;color:#1A3557;margin-bottom:8px;}
+.p-capa h3{font-size:13pt;font-weight:bold;color:#1A3557;margin-bottom:20px;}
+.p-capa .p-empresa{font-size:14pt;font-weight:bold;border:2px solid #1A3557;
+  display:inline-block;padding:10px 30px;border-radius:6px;margin-bottom:20px;}
+.p-capa .p-objeto{font-size:9pt;text-align:justify;max-width:500px;margin:0 auto;line-height:1.6;}
+
+.psec{color:#1A3557;font-weight:bold;font-size:9pt;margin-top:10px;margin-bottom:0;
+  text-transform:uppercase;letter-spacing:.4px;border-left:4px solid #2563A8;
+  padding:4px 8px;background:#EBF2FB;}
+.psec-txt{padding:7px 10px;background:#F9FAFB;border:1px solid #D1D5DB;border-top:none;font-size:8.5pt;line-height:1.7;}
+
+.ptbl{width:100%;border-collapse:collapse;font-size:8.5pt;}
+.ptbl th{background:#1A3557;color:#fff;font-weight:bold;padding:6px 8px;
+  border:1px solid #D1D5DB;font-size:8pt;text-transform:uppercase;}
+.ptbl td{padding:5px 8px;border:1px solid #D1D5DB;vertical-align:middle;}
+.ptbl tr:nth-child(even) td{background:#F9FAFB;}
+.ptbl .td-total{font-weight:bold;text-align:right;}
+.ptbl .td-val{text-align:right;}
+.ptbl .td-num{text-align:center;}
+.ptbl tfoot td{background:#1A3557;color:#fff;font-weight:bold;font-size:9pt;padding:7px 8px;}
+.ptbl tfoot .td-total{color:#fff;font-size:11pt;}
+
+.p-conds{padding:10px;background:#F9FAFB;border:1px solid #D1D5DB;border-top:none;}
+.p-cond{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid #E5E7EB;font-size:8.5pt;}
+.p-cond:last-child{border-bottom:none;}
+.p-cond .p-icon{font-size:11pt;flex-shrink:0;}
+
+.p-pagamento{background:#EBF2FB;border:1px solid #BFDBFE;border-radius:4px;
+  padding:10px 12px;margin-top:8px;}
+.p-pagamento table{width:100%;border-collapse:collapse;font-size:8.5pt;}
+.p-pagamento td{padding:4px 8px;border-bottom:1px solid #BFDBFE;}
+.p-pagamento td:last-child{font-weight:bold;text-align:right;}
+.p-pagamento tr:last-child td{border-bottom:none;}
+
+.passig{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px;padding:0 10px;}
+.pline{border-top:1.5px solid #374151;padding-top:8px;text-align:center;}
+.pline p{font-size:8.5pt;margin-bottom:2px;}
+.pfoot{margin-top:14px;padding:4px 12px;background:#1A3557;color:#fff;font-size:6.5pt;display:flex;justify-content:space-between;}
+
+.pcmps{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:7px 10px;background:#F9FAFB;border:1px solid #E5E7EB;border-top:none;}
+.pcmps-1col{grid-template-columns:1fr;}
+.pcmp strong{color:#6B7280;font-size:7pt;text-transform:uppercase;display:block;}
+.pcmp span{font-size:8.5pt;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="ico">💼</div>
+  <div>
+    <h1>Proposta Comercial – Unique Consultoria</h1>
+    <p>Serviços de Saúde e Segurança do Trabalho</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- LOGO -->
+<div class="card">
+  <div class="chdr azul">🏷️ Logomarca do Cliente (opcional)</div>
+  <div class="cbdy">
+    <p style="font-size:0.78rem;color:var(--cinza);margin-bottom:12px">A logo da Unique Consultoria já está incluída automaticamente no PDF. Adicione a logo do cliente se desejar.</p>
+    <div style="max-width:300px">
+      <div class="logo-slot" id="slot-cli">
+        <label style="cursor:pointer;display:block;">
+          <input type="file" accept="image/*" id="inp-logo-cli" style="display:none">
+          <img id="prev-logo-cli" src="" style="display:none;max-height:55px;margin:0 auto 5px;">
+          <span id="txt-logo-cli">🏭 Logo do Cliente</span>
+          <small>Toque para selecionar</small>
+        </label>
+        <div class="logo-rm" id="rm-cli" style="display:none" onclick="remLogo('cli')">✕ Remover</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDENTIFICAÇÃO -->
+<div class="card">
+  <div class="chdr azul">📋 Dados da Proposta</div>
+  <div class="cbdy">
+    <div class="g2">
+      <div class="fg sp"><label class="lbl">Empresa / Cliente</label><input id="f_emp" type="text" placeholder="Nome da empresa cliente"></div>
+      <div class="fg sp"><label class="lbl">Endereço da Empresa</label><input id="f_end" type="text" placeholder="Rua, número, bairro, cidade/UF"></div>
+      <div class="fg"><label class="lbl">CNPJ / CPF</label><input id="f_cnpj" type="text" placeholder="00.000.000/0000-00"></div>
+      <div class="fg"><label class="lbl">Nº de Funcionários</label><input id="f_func" type="number" placeholder="Ex: 20"></div>
+      <div class="fg"><label class="lbl">Ramo de Atividade</label><input id="f_ramo" type="text" placeholder="Ex: Restaurante, Comércio, Indústria..."></div>
+      <div class="fg"><label class="lbl">Data da Proposta</label><input id="f_data" type="date"></div>
+      <div class="fg"><label class="lbl">Nº da Proposta</label><input id="f_num" type="text" placeholder="Ex: 001/2026"></div>
+      <div class="fg"><label class="lbl">Vigência do Contrato</label>
+        <select id="f_vigencia">
+          <option value="12 meses">12 meses</option>
+          <option value="24 meses">24 meses</option>
+          <option value="Indeterminado">Indeterminado</option>
+          <option value="Avulso">Avulso (sem contrato)</option>
+        </select>
+      </div>
+      <div class="resp-box">
+        <label class="lbl">👤 Responsável Técnico</label>
+        <input id="f_resp_nome" type="text" value="HUGO LEONARDO MARQUES SANTOS" style="margin-top:6px;font-weight:600;">
+        <div class="resp-row">
+          <input id="f_resp_cargo" type="text" value="TÉCNICO EM SEGURANÇA DO TRABALHO">
+          <input id="f_resp_reg"   type="text" value="MTE 0001177 / CREA 2706878657">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<div class="card">
+  <div class="chdr verde">📝 Serviços e Valores</div>
+  <div class="cbdy">
+    <p style="font-size:0.78rem;color:var(--cinza);margin-bottom:14px">Marque os serviços que compõem esta proposta, informe a quantidade e o valor unitário. O total é calculado automaticamente.</p>
+
+    <div class="srv-header">
+      <span></span>
+      <span>Serviço</span>
+      <span style="text-align:right">Qtd / Unid</span>
+      <span style="text-align:right">Valor Unitário (R$)</span>
+      <span style="text-align:right">Total (R$)</span>
+    </div>
+
+    <div id="srv-container"></div>
+
+    <!-- Total geral -->
+    <div style="background:var(--azul);border-radius:8px;padding:14px 16px;margin-top:14px;color:#fff;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-size:0.82rem;opacity:.8">Subtotal</span>
+        <span id="subtotal-val" style="font-size:0.95rem;font-weight:600">R$ 0,00</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:0.82rem;opacity:.8">Desconto</span>
+          <input type="number" id="f_desconto" min="0" max="100" value="0"
+            style="width:60px;padding:4px 6px;border-radius:5px;border:none;font-size:0.82rem;text-align:center;color:var(--txt);background:rgba(255,255,255,.2);color:#fff;"
+            oninput="calcTotal()" placeholder="0">
+          <span style="font-size:0.82rem;opacity:.8">%</span>
+        </div>
+        <span id="desc-val" style="font-size:0.88rem;color:rgba(255,255,255,.7)">- R$ 0,00</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.2);padding-top:10px;">
+        <span style="font-size:1rem;font-weight:700">TOTAL GERAL</span>
+        <span id="total-val" style="font-size:1.3rem;font-weight:700">R$ 0,00</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONDIÇÕES DE PAGAMENTO -->
+<div class="card">
+  <div class="chdr amar">💳 Condições de Pagamento</div>
+  <div class="cbdy">
+    <div class="g2">
+      <div class="fg">
+        <label class="lbl">Forma de Pagamento</label>
+        <select id="f_pgto" onchange="togglePgto()">
+          <option value="avista">À vista</option>
+          <option value="entrada_parcelas" selected>Entrada + Parcelas</option>
+          <option value="parcelas">Somente Parcelas</option>
+          <option value="mensal">Mensalidade</option>
+          <option value="personalizado">Personalizado</option>
+        </select>
+      </div>
+      <div class="fg" id="wrap-entrada">
+        <label class="lbl">% de Entrada</label>
+        <input type="number" id="f_entrada_pct" value="30" min="0" max="100" oninput="calcPgto()" placeholder="Ex: 30">
+      </div>
+      <div class="fg" id="wrap-parcelas">
+        <label class="lbl">Nº de Parcelas (saldo)</label>
+        <input type="number" id="f_parcelas" value="11" min="1" max="60" oninput="calcPgto()" placeholder="Ex: 11">
+      </div>
+      <div class="fg">
+        <label class="lbl">Vencimento / Observação</label>
+        <input type="text" id="f_venc" placeholder="Ex: Todo dia 10 do mês">
+      </div>
+    </div>
+
+    <!-- Preview das parcelas -->
+    <div id="pgto-preview" style="margin-top:12px;background:var(--azulc);border:1px solid #BFDBFE;border-radius:8px;padding:12px;font-size:0.82rem;"></div>
+
+    <div style="margin-top:10px" id="wrap-pgto-custom" style="display:none">
+      <label class="lbl">Condições personalizadas</label>
+      <textarea id="f_pgto_custom" rows="3" placeholder="Descreva as condições de pagamento..."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- OBSERVAÇÕES -->
+<div class="card">
+  <div class="chdr azul">📌 Observações e Condições Gerais</div>
+  <div class="cbdy">
+    <textarea id="f_obs" rows="4" placeholder="Ex: Os exames e consultas ocupacionais não fazem parte do escopo do serviço. A proposta é válida por 30 dias..."></textarea>
+  </div>
+</div>
+
+<!-- BOTÕES -->
+<div class="btnrow" id="btn-area">
+  <button class="btn btns" onclick="previa()">👁 Pré-visualizar</button>
+  <button class="btn btnp" onclick="gerarPDF()">📄 Gerar PDF</button>
+</div>
+
+<div id="preview-box">
+  <h2>✅ Proposta pronta!</h2>
+  <p>Toque em <strong>Imprimir / Salvar PDF</strong> e escolha <em>"Salvar como PDF"</em>.</p>
+  <div class="btnrow">
+    <button class="btn btns" onclick="fecharPrevia()">← Editar</button>
+    <button class="btn btnp" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+  </div>
+</div>
+
+</div>
+<div id="parea"></div>
+
+<script>
+var RESP_NOME  = 'HUGO LEONARDO MARQUES SANTOS';
+var RESP_CARGO = 'TÉCNICO EM SEGURANÇA DO TRABALHO';
+var RESP_REG   = 'MTE 0001177 / CREA 2706878657';
+var logoUnique = null, logoCli = null;
+
+// ---- CATÁLOGO DE SERVIÇOS ----
+var GRUPOS = [
+  {
+    titulo: 'Programas e Laudos',
+    servicos: [
+      {id:'pgr',  nome:'Elaboração de PGR – Programa de Gerenciamento de Riscos', unid:'serviço'},
+      {id:'pcmso',nome:'Elaboração de PCMSO – Programa de Controle Médico de Saúde Ocupacional', unid:'serviço'},
+      {id:'ltcat',nome:'Elaboração de LTCAT – Laudo Técnico de Condições Ambientais de Trabalho', unid:'serviço'},
+      {id:'lip',  nome:'Elaboração de LIP – Laudo de Insalubridade e Periculosidade', unid:'serviço'},
+      {id:'pae',  nome:'Elaboração de PAE – Plano de Atendimento a Emergência', unid:'serviço'},
+      {id:'paia', nome:'Elaboração de PAIA – Procedimento de Análise e Investigação de Acidentes', unid:'serviço'},
+    ]
+  },
+  {
+    titulo: 'Medições Quantitativas',
+    servicos: [
+      {id:'m_ruido',   nome:'Medição Quantitativa de Ruído', unid:'ponto'},
+      {id:'m_calor',   nome:'Medição Quantitativa de Calor (IBUTG)', unid:'ponto'},
+      {id:'m_vibracao',nome:'Medição Quantitativa de Vibração', unid:'ponto'},
+      {id:'m_ilum',    nome:'Medição de Iluminamento (Lux)', unid:'ponto'},
+      {id:'m_quimico', nome:'Medição de Produtos Químicos (por agente químico)', unid:'agente'},
+    ]
+  },
+  {
+    titulo: 'Treinamentos e Capacitações',
+    servicos: [
+      {id:'tr_ead',  nome:'Treinamentos em Plataforma EAD (NR-01, NR-05, NR-06, NR-10, NR-17, NR-35)', unid:'turma'},
+      {id:'tr_pres', nome:'Treinamento Presencial (por NR)', unid:'turma'},
+      {id:'cipa',    nome:'Acompanhamento de Processo Eleitoral e Funcionamento da CIPA', unid:'serviço'},
+    ]
+  },
+  {
+    titulo: 'Assessoria e Consultoria',
+    servicos: [
+      {id:'esocial',   nome:'Transmissão de Informações ao Sistema e-Social', unid:'serviço'},
+      {id:'psicossoc', nome:'Avaliação de Riscos Psicossociais', unid:'serviço'},
+      {id:'assessoria',nome:'Assessoria e Consultoria Mensal', unid:'mês'},
+      {id:'rti',       nome:'Relatório Técnico de Inspeção (RTI) – NR-10', unid:'relatório'},
+      {id:'visita',    nome:'Visita Técnica de Levantamento de Riscos', unid:'visita'},
+    ]
+  },
+  {
+    titulo: 'Deslocamento',
+    servicos: [
+      {id:'km', nome:'Deslocamento (por km rodado)', unid:'km'},
+    ]
+  },
+  {
+    titulo: 'Pacote de Adequação ao e-Social',
+    servicos: [
+      {id:'pack_esocial', nome:'PACOTE DE ADEQUAÇÃO AO e-SOCIAL – Elaboração de PGR + PCMSO + LTCAT + LIP + Transferência de Informações ao e-Social (arquivo XML)', unid:'pacote'},
+    ]
+  }
+];
+
+// ---- BUILD SERVIÇOS ----
+function buildServicos(){
+  var cont = document.getElementById('srv-container');
+  cont.innerHTML = '';
+  GRUPOS.forEach(function(g){
+    var gdiv = document.createElement('div'); gdiv.className='srv-grupo';
+    var gtit = document.createElement('div'); gtit.className='srv-grupo-titulo'; gtit.textContent=g.titulo;
+    gdiv.appendChild(gtit);
+    g.servicos.forEach(function(s){
+      var row = document.createElement('div'); row.className='srv-item'; row.id='row-'+s.id;
+      row.innerHTML =
+        '<input type="checkbox" class="srv-check" id="chk-'+s.id+'" onchange="toggleSrv(\''+s.id+'\')">'+
+        '<label class="srv-nome" for="chk-'+s.id+'">'+s.nome+'<br><span style="font-size:0.7rem;color:var(--cinza);font-weight:400">Unid: '+s.unid+'</span></label>'+
+        '<input type="number" class="srv-qtd" id="qtd-'+s.id+'" value="1" min="0" step="any" disabled placeholder="Qtd" oninput="calcTotal()">'+
+        '<input type="text" class="srv-val" id="val-'+s.id+'" disabled placeholder="R$ 0,00" oninput="calcTotal()">'+
+        '<div class="srv-total zero" id="tot-'+s.id+'">R$ 0,00</div>';
+      gdiv.appendChild(row);
+    });
+    cont.appendChild(gdiv);
+  });
+}
+
+function toggleSrv(id){
+  var chk = document.getElementById('chk-'+id);
+  var row = document.getElementById('row-'+id);
+  var qtd = document.getElementById('qtd-'+id);
+  var val = document.getElementById('val-'+id);
+  if(chk.checked){
+    row.classList.add('ativo');
+    qtd.disabled = false; val.disabled = false;
+    qtd.focus();
+  } else {
+    row.classList.remove('ativo');
+    qtd.disabled = true; val.disabled = true;
+    document.getElementById('tot-'+id).textContent = 'R$ 0,00';
+    document.getElementById('tot-'+id).classList.add('zero');
+  }
+  calcTotal();
+}
+
+function parseMoeda(s){
+  if(!s) return 0;
+  var clean = s.replace(/[R$\s.]/g,'').replace(',','.');
+  var n = parseFloat(clean);
+  return isNaN(n) ? 0 : n;
+}
+
+function fmtMoeda(v){
+  return 'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+}
+
+function calcTotal(){
+  var subtotal = 0;
+  GRUPOS.forEach(function(g){
+    g.servicos.forEach(function(s){
+      var chk=document.getElementById('chk-'+s.id);
+      if(!chk||!chk.checked) return;
+      var qtd=parseFloat((document.getElementById('qtd-'+s.id)||{}).value)||0;
+      var val=parseMoeda((document.getElementById('val-'+s.id)||{}).value);
+      var tot=qtd*val;
+      var totEl=document.getElementById('tot-'+s.id);
+      if(totEl){
+        totEl.textContent=fmtMoeda(tot);
+        totEl.classList.toggle('zero', tot===0);
+      }
+      subtotal+=tot;
+    });
+  });
+  var desc=parseFloat(document.getElementById('f_desconto').value)||0;
+  var descVal=subtotal*desc/100;
+  var total=subtotal-descVal;
+  document.getElementById('subtotal-val').textContent=fmtMoeda(subtotal);
+  document.getElementById('desc-val').textContent='- '+fmtMoeda(descVal);
+  document.getElementById('total-val').textContent=fmtMoeda(total);
+  calcPgto();
+  return {subtotal:subtotal, descVal:descVal, total:total};
+}
+
+// ---- PAGAMENTO ----
+function togglePgto(){
+  var modo=document.getElementById('f_pgto').value;
+  document.getElementById('wrap-entrada').style.display=(modo==='entrada_parcelas')?'':'none';
+  document.getElementById('wrap-parcelas').style.display=(modo==='entrada_parcelas'||modo==='parcelas')?'':'none';
+  document.getElementById('wrap-pgto-custom').style.display=(modo==='personalizado')?'block':'none';
+  calcPgto();
+}
+
+function calcPgto(){
+  var modo=document.getElementById('f_pgto').value;
+  var totais=calcTotaisRaw();
+  var total=totais.total;
+  var prev=document.getElementById('pgto-preview');
+  var html='';
+
+  if(modo==='avista'){
+    html='<strong>💳 À vista:</strong> '+fmtMoeda(total);
+  } else if(modo==='entrada_parcelas'){
+    var pct=parseFloat(document.getElementById('f_entrada_pct').value)||30;
+    var nParc=parseInt(document.getElementById('f_parcelas').value)||11;
+    var entrada=total*pct/100;
+    var saldo=total-entrada;
+    var parcela=nParc>0?saldo/nParc:0;
+    html='<strong>Entrada ('+pct+'%):</strong> '+fmtMoeda(entrada)+'<br>'+
+         '<strong>Saldo ('+nParc+'x):</strong> '+fmtMoeda(parcela)+' / parcela<br>'+
+         '<strong>Total:</strong> '+fmtMoeda(total);
+  } else if(modo==='parcelas'){
+    var nParc2=parseInt(document.getElementById('f_parcelas').value)||12;
+    var parcela2=nParc2>0?total/nParc2:0;
+    html='<strong>'+nParc2+'x de</strong> '+fmtMoeda(parcela2)+'<br><strong>Total:</strong> '+fmtMoeda(total);
+  } else if(modo==='mensal'){
+    html='<strong>Mensalidade:</strong> '+fmtMoeda(total)+' / mês';
+  } else {
+    html='Condições personalizadas — veja campo abaixo.';
+  }
+  prev.innerHTML=html;
+}
+
+function calcTotaisRaw(){
+  var subtotal=0;
+  GRUPOS.forEach(function(g){
+    g.servicos.forEach(function(s){
+      var chk=document.getElementById('chk-'+s.id);
+      if(!chk||!chk.checked) return;
+      var qtd=parseFloat((document.getElementById('qtd-'+s.id)||{}).value)||0;
+      var val=parseMoeda((document.getElementById('val-'+s.id)||{}).value);
+      subtotal+=qtd*val;
+    });
+  });
+  var desc=parseFloat(document.getElementById('f_desconto').value)||0;
+  var descVal=subtotal*desc/100;
+  return {subtotal:subtotal, descVal:descVal, total:subtotal-descVal};
+}
+
+// ---- LOGOS ----
+function setupLogos(){
+  // Só configura logo do cliente — Unique é fixa no PDF
+  var inp=document.getElementById('inp-logo-cli');
+  if(inp) inp.addEventListener('change',function(e){
+    var f=e.target.files&&e.target.files[0]; if(!f)return;
+    var r=new FileReader(); r.onload=function(ev){setLogo('cli',ev.target.result);}; r.readAsDataURL(f);
+  });
+}
+function setLogo(t,url){
+  if(t==='unique') logoUnique=url; else logoCli=url;
+  var img=document.getElementById('prev-logo-'+t);
+  var txt=document.getElementById('txt-logo-'+t);
+  var slot=document.getElementById('slot-'+t);
+  var rm=document.getElementById('rm-'+t);
+  if(img){img.src=url;img.style.display='block';}
+  if(txt) txt.style.display='none';
+  if(slot) slot.classList.add('ok');
+  if(rm) rm.style.display='block';
+}
+function remLogo(t){
+  if(t==='unique') logoUnique=null; else logoCli=null;
+  var img=document.getElementById('prev-logo-'+t);
+  var txt=document.getElementById('txt-logo-'+t);
+  var slot=document.getElementById('slot-'+t);
+  var rm=document.getElementById('rm-'+t);
+  if(img){img.src='';img.style.display='none';}
+  if(txt) txt.style.display='';
+  if(slot) slot.classList.remove('ok');
+  if(rm) rm.style.display='none';
+}
+
+// ---- CABEÇALHO PRINT ----
+function cabecalho(dt, num){
+  var h='<div class="pghdr"><div class="pghdr-inner">';
+  // Logo Unique — sempre exibe (imagem se disponível, senão bloco de texto estilizado)
+  h+='<img class="plogo" src="data:image/jpeg;base64,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" alt="Unique Consultoria">';
+  h+='<div class="pghdr-txt">'+
+    '<h1>PROPOSTA COMERCIAL – SERVIÇOS DE SAÚDE E SEGURANÇA DO TRABALHO</h1>'+
+    '<div class="linha1">Rua Guilhermino Rezende, 451 – Salgado Filho – Aracaju/SE &nbsp;&nbsp;|&nbsp;&nbsp; CNPJ: 27.240.528/0001-94</div>'+
+    '<div class="linha2">E-mail: unique@uniqueconsultoria.net &nbsp;&nbsp;|&nbsp;&nbsp; Telefone: (79) 99678-3734</div>'+
+  '</div>';
+  // Logo cliente — opcional
+  if(logoCli){
+    h+='<img class="plogo" src="'+logoCli+'" alt="Cliente">';
+  } else {
+    h+='<div style="width:70px;flex-shrink:0"></div>';
+  }
+  h+='</div><div class="pghdr-faixa">Proposta Nº '+num+' &nbsp;&nbsp;|&nbsp;&nbsp; Data: '+dt+'</div></div>';
+  return h;
+}
+
+// ---- MONTAR HTML ----
+function montarHTML(){
+  var emp   =document.getElementById('f_emp').value||'—';
+  var end   =document.getElementById('f_end').value||'—';
+  var cnpj  =document.getElementById('f_cnpj').value||'—';
+  var func  =document.getElementById('f_func').value||'—';
+  var ramo  =document.getElementById('f_ramo').value||'—';
+  var dv    =document.getElementById('f_data').value;
+  var dt    =dv?dv.split('-').reverse().join('/'):'—';
+  var num   =document.getElementById('f_num').value||'001/2026';
+  var vigencia=document.getElementById('f_vigencia').value||'12 meses';
+  var nome  =document.getElementById('f_resp_nome').value||RESP_NOME;
+  var cargo =document.getElementById('f_resp_cargo').value||RESP_CARGO;
+  var reg   =document.getElementById('f_resp_reg').value||RESP_REG;
+  var obs   =document.getElementById('f_obs').value||'Os exames e consultas ocupacionais não fazem parte do escopo do serviço.';
+  var modo  =document.getElementById('f_pgto').value;
+  var venc  =document.getElementById('f_venc').value||'';
+  var totais=calcTotaisRaw();
+  var desc  =parseFloat(document.getElementById('f_desconto').value)||0;
+
+  var h='', sn=1;
+
+  // CAPA
+  var logoCapaHtml = '<img src="data:image/jpeg;base64,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" style="max-height:90px;max-width:240px;margin-bottom:16px;">';
+
+  h+='<div class="p-capa">'+
+    logoCapaHtml+
+    '<h2>PROPOSTA COMERCIAL</h2>'+
+    '<h3>SERVIÇOS DE SAÚDE E SEGURANÇA DO TRABALHO</h3>'+
+    '<div class="p-empresa">EMPRESA: '+emp+'</div>'+
+    '<div class="p-objeto">OBJETO: Contratação de empresa especializada em Segurança e Medicina do Trabalho e Saúde Ocupacional, a fim de elaborar, desenvolver e acompanhar o Sistema de Gestão em Saúde e Segurança Ocupacional.</div>'+
+    '<p style="margin-top:16px;font-size:9pt">Aracaju – SE</p>'+
+  '</div>';
+
+  // 1. DADOS DA EMPRESA
+  h+='<div class="psec">'+(sn++)+'. DADOS DA EMPRESA CONTRATANTE</div>';
+  h+='<div class="pcmps pcmps-1col"><div class="pcmp"><strong>Empresa</strong><span>'+emp+'</span></div></div>';
+  h+='<div class="pcmps"><div class="pcmp"><strong>CNPJ / CPF</strong><span>'+cnpj+'</span></div>'+
+    '<div class="pcmp"><strong>Nº de Funcionários</strong><span>'+func+'</span></div></div>';
+  h+='<div class="pcmps pcmps-1col"><div class="pcmp"><strong>Endereço</strong><span>'+end+'</span></div></div>';
+  h+='<div class="pcmps"><div class="pcmp"><strong>Ramo de Atividade</strong><span>'+ramo+'</span></div>'+
+    '<div class="pcmp"><strong>Vigência do Contrato</strong><span>'+vigencia+'</span></div></div>';
+
+  // 2. ESCOPO
+  var selecionados=[];
+  GRUPOS.forEach(function(g){
+    g.servicos.forEach(function(s){
+      var chk=document.getElementById('chk-'+s.id);
+      if(chk&&chk.checked){
+        if(s.id==='pack_esocial'){
+          selecionados.push('Elaboração de PGR – Programa de Gerenciamento de Riscos');
+          selecionados.push('Elaboração de PCMSO – Programa de Controle Médico de Saúde Ocupacional');
+          selecionados.push('Elaboração de LTCAT – Laudo Técnico de Condições Ambientais de Trabalho');
+          selecionados.push('Elaboração de LIP – Laudo de Insalubridade e Periculosidade');
+          selecionados.push('Transferência de informações ao sistema do e-Social em arquivo XML');
+        } else {
+          selecionados.push(s.nome);
+        }
+      }
+    });
+  });
+
+  h+='<div class="psec">'+(sn++)+'. ESCOPO DOS SERVIÇOS</div>';
+  h+='<div class="psec-txt">Itens que englobam esta proposta:<br><br>';
+  selecionados.forEach(function(s,i){ h+='<strong>'+(i+1)+'.</strong> '+s+';<br>'; });
+  h+='</div>';
+
+  // 3. DISCRIMINATIVO DE VALORES
+  h+='<div class="psec">'+(sn++)+'. DISCRIMINATIVO DE VALORES</div>';
+  h+='<table class="ptbl"><thead><tr>'+
+    '<th style="width:5%">Nº</th>'+
+    '<th>Serviço / Descrição</th>'+
+    '<th style="width:10%" class="td-num">Qtd</th>'+
+    '<th style="width:12%">Unid</th>'+
+    '<th style="width:14%" class="td-val">Valor Unit. (R$)</th>'+
+    '<th style="width:14%" class="td-val">Total (R$)</th>'+
+  '</tr></thead><tbody>';
+
+  var idx=1;
+  GRUPOS.forEach(function(g){
+    g.servicos.forEach(function(s){
+      var chk=document.getElementById('chk-'+s.id);
+      if(!chk||!chk.checked) return;
+      var qtd=parseFloat((document.getElementById('qtd-'+s.id)||{}).value)||0;
+      var val=parseMoeda((document.getElementById('val-'+s.id)||{}).value);
+      var tot=qtd*val;
+      h+='<tr>'+
+        '<td class="td-num">'+idx+'</td>'+
+        '<td>'+s.nome+'</td>'+
+        '<td class="td-num">'+qtd+'</td>'+
+        '<td>'+s.unid+'</td>'+
+        '<td class="td-val">'+fmtMoeda(val)+'</td>'+
+        '<td class="td-val td-total">'+fmtMoeda(tot)+'</td>'+
+      '</tr>';
+      idx++;
+    });
+  });
+
+  h+='</tbody><tfoot>';
+  if(desc>0){
+    h+='<tr><td colspan="5" style="text-align:right;background:#374151">Subtotal</td>'+
+      '<td class="td-total" style="background:#374151">'+fmtMoeda(totais.subtotal)+'</td></tr>';
+    h+='<tr><td colspan="5" style="text-align:right;background:#374151">Desconto ('+desc+'%)</td>'+
+      '<td class="td-total" style="background:#374151;color:#FCA5A5">- '+fmtMoeda(totais.descVal)+'</td></tr>';
+  }
+  h+='<tr><td colspan="5" style="text-align:right">VALOR TOTAL</td>'+
+    '<td class="td-total">'+fmtMoeda(totais.total)+'</td></tr>';
+  h+='</tfoot></table>';
+
+  // 4. CONDIÇÕES COMERCIAIS
+  h+='<div class="psec">'+(sn++)+'. VALORES E CONDIÇÕES COMERCIAIS</div>';
+  h+='<div class="p-conds">';
+
+  // valor total
+  h+='<div class="p-cond"><span class="p-icon">💰</span>'+
+    '<span><strong>Valor Total: '+fmtMoeda(totais.total)+'</strong></span></div>';
+
+  // pagamento
+  var pgtoTxt='';
+  if(modo==='avista'){
+    pgtoTxt='Pagamento à vista: '+fmtMoeda(totais.total)+'.';
+  } else if(modo==='entrada_parcelas'){
+    var pct=parseFloat(document.getElementById('f_entrada_pct').value)||30;
+    var nParc=parseInt(document.getElementById('f_parcelas').value)||11;
+    var entrada=totais.total*pct/100;
+    var saldo=totais.total-entrada;
+    var parcela=nParc>0?saldo/nParc:0;
+    pgtoTxt='Entrada de '+pct+'%, no valor de '+fmtMoeda(entrada)+', e saldo restante dividido em '+nParc+' parcelas de '+fmtMoeda(parcela)+'.';
+  } else if(modo==='parcelas'){
+    var nParc2=parseInt(document.getElementById('f_parcelas').value)||12;
+    var parcela2=nParc2>0?totais.total/nParc2:0;
+    pgtoTxt=nParc2+'x de '+fmtMoeda(parcela2)+'.';
+  } else if(modo==='mensal'){
+    pgtoTxt='Mensalidade de '+fmtMoeda(totais.total)+'/mês.';
+  } else {
+    pgtoTxt=document.getElementById('f_pgto_custom').value||'Condições a combinar.';
+  }
+  if(venc) pgtoTxt+=' Vencimento: '+venc+'.';
+
+  h+='<div class="p-cond"><span class="p-icon">💳</span>'+
+    '<span><strong>Forma de Pagamento:</strong> '+pgtoTxt+'</span></div>';
+
+  h+='<div class="p-cond"><span class="p-icon">👥</span>'+
+    '<span>A proposta se dá para 01 (uma) empresa com '+func+' funcionário(s) no ramo de '+ramo+'.</span></div>';
+
+  h+='<div class="p-cond"><span class="p-icon">📅</span>'+
+    '<span><strong>Vigência do Contrato:</strong> '+vigencia+'.</span></div>';
+
+  if(obs){
+    h+='<div class="p-cond"><span class="p-icon">📌</span>'+
+      '<span>'+obs+'</span></div>';
+  }
+  h+='</div>';
+
+  // 5. ASSINATURAS
+  h+='<div class="psec">'+(sn++)+'. ASSINATURAS</div>';
+  h+='<div style="padding:8px 10px;background:#F9FAFB;border:1px solid #D1D5DB;border-top:none;font-size:8pt">'+
+    'Ao assinar esta proposta, as partes concordam com os termos e condições acima estabelecidos.'+
+  '</div>';
+  h+='<div class="passig">'+
+    '<div class="pline">'+
+      '<p style="margin-bottom:35px">&nbsp;</p>'+
+      '<p><strong>UNIQUE CONSULTORIA</strong></p>'+
+      '<p>'+nome+'</p>'+
+      '<p>'+cargo+'</p>'+
+      '<p>'+reg+'</p>'+
+    '</div>'+
+    '<div class="pline">'+
+      '<p style="margin-bottom:35px">&nbsp;</p>'+
+      '<p><strong>'+emp+'</strong></p>'+
+      '<p>Responsável / Representante Legal</p>'+
+    '</div>'+
+  '</div>';
+
+  h+='<div style="text-align:center;margin-top:20px;font-size:8.5pt;color:#6B7280">'+
+    'Aracaju – SE, '+dt+
+  '</div>';
+
+  h+='<div class="pfoot">'+
+    '<span>Unique Consultoria · unique@uniqueconsultoria.net · (79) 99678-3734</span>'+
+    '<span>Proposta Nº '+num+' · Data: '+dt+'</span>'+
+  '</div>';
+
+  return h;
+}
+
+// ---- AÇÕES ----
+function previa(){
+  var dv=document.getElementById('f_data').value; var dt=dv?dv.split('-').reverse().join('/'):'—';
+  var num=document.getElementById('f_num').value||'001/2026';
+  var pa=document.getElementById('parea');
+  pa.innerHTML='<table class="phdr-tbl" style="width:100%;border-collapse:collapse">'+
+    '<thead><tr><td style="padding:0">'+cabecalho(dt,num)+'</td></tr></thead>'+
+    '<tbody><tr><td style="padding:0;vertical-align:top">'+montarHTML()+'</td></tr></tbody>'+
+  '</table>';
+  pa.style.display='block';
+  document.getElementById('preview-box').style.display='block';
+  document.getElementById('btn-area').style.display='none';
+  document.getElementById('preview-box').scrollIntoView({behavior:'smooth'});
+}
+function fecharPrevia(){
+  document.getElementById('parea').style.display='none';
+  document.getElementById('preview-box').style.display='none';
+  document.getElementById('btn-area').style.display='flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function gerarPDF(){
+  var dv=document.getElementById('f_data').value; var dt=dv?dv.split('-').reverse().join('/'):'—';
+  var num=document.getElementById('f_num').value||'001/2026';
+  var pa=document.getElementById('parea');
+  pa.innerHTML='<table class="phdr-tbl" style="width:100%;border-collapse:collapse">'+
+    '<thead><tr><td style="padding:0">'+cabecalho(dt,num)+'</td></tr></thead>'+
+    '<tbody><tr><td style="padding:0;vertical-align:top">'+montarHTML()+'</td></tr></tbody>'+
+  '</table>';
+  pa.style.display='block';
+  setTimeout(function(){ window.print(); setTimeout(function(){ pa.style.display='none'; },1500); },300);
+}
+
+// ---- INIT ----
+setupLogos();
+buildServicos();
+togglePgto();
+</script>
+</body>
+</html>
